@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ButtonExamplesPage extends StatelessWidget {
+  const ButtonExamplesPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

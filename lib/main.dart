@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:will_widget_playground/case/button_case_pages.dart';
 import 'package:will_widget_playground/case/container_with_bg_case_pages.dart';
+import 'package:will_widget_playground/case/text_field_pages.dart';
 
 void main() {
   runApp(const MyApp());
@@ -58,6 +59,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
       title: "复杂的背景",
       description: "多种复杂背景效果展示",
       pageBuilder: (context) => ContainerWithBgCasePages(),
+    ),
+    DemoItem(
+      title: "输入框合集",
+      description: "包含各种样式和交互",
+      pageBuilder: (context) => TextFieldPages(),
     ),
     // 后续添加更多示例...
   ];
