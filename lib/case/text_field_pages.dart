@@ -30,6 +30,8 @@ class _TextFieldPagesState extends State<TextFieldPages> {
           SizedBox(height: 20),
           _buildTextField(),
           SizedBox(height: 20),
+          _buildTextFieldWithCustomBorder(),
+          SizedBox(height: 20),
           _buildActionButtons(),
           SizedBox(height: 220),
           // test softKeyboard behavior
@@ -69,6 +71,45 @@ class _TextFieldPagesState extends State<TextFieldPages> {
         ),
       ),
       onChanged: (value) => setState(() {}),
+    );
+  }
+
+  Widget _buildTextFieldWithCustomBorder() {
+    return Container(
+      padding: EdgeInsets.all(2),
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Colors.grey,
+          width: 1.5,
+        ),
+        borderRadius: BorderRadius.all(
+          Radius.circular(10),
+        ),
+      ),
+      child: TextField(
+        obscureText: true,
+        controller: _textController,
+        focusNode: _focusNode,
+        style: TextStyle(
+            fontSize: 14, color: Colors.black, fontWeight: FontWeight.w700),
+        decoration: InputDecoration(
+          filled: true,
+          contentPadding: EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+          fillColor: Colors.white.withValues(alpha: 0.9),
+          labelText: "请输入内容",
+          labelStyle: TextStyle(color: Colors.amber[600]),
+          floatingLabelStyle: TextStyle(color: Colors.amber[100]),
+          floatingLabelBehavior: FloatingLabelBehavior.auto,
+          border: InputBorder.none,
+          suffixIcon: _textController.text.isEmpty
+              ? null
+              : IconButton(
+            icon: Icon(Icons.visibility_off_outlined, color: Colors.grey[600]),
+            onPressed: () => _textController.clear(),
+          ),
+        ),
+        onChanged: (value) => setState(() {}),
+      ),
     );
   }
 
