@@ -28,8 +28,6 @@ class _TextFieldPagesState extends State<TextFieldPages> {
           _buildExampleSection("基础输入框"),
           _buildTextFieldWithBorder(),
           SizedBox(height: 20),
-          _buildTextField(),
-          SizedBox(height: 20),
           _buildTextFieldWithCustomBorder(),
           SizedBox(height: 20),
           _buildActionButtons(),
@@ -120,31 +118,6 @@ class _TextFieldPagesState extends State<TextFieldPages> {
         color: color ?? Colors.grey[400]!,
         width: 1.5,
       ),
-    );
-  }
-
-  Widget _buildTextField() {
-    return TextField(
-      decoration: InputDecoration(
-        filled: true,
-        fillColor: Colors.white.withValues(alpha: 0.9),
-        labelText: "请输入内容",
-        floatingLabelBehavior: FloatingLabelBehavior.auto, // 默认自动浮动
-        hintText: 'Enter your info',
-        hintStyle: TextStyle(color: Colors.grey[600]),
-        helperText: 'This is a helper text',
-        // errorText: _textController.text.isEmpty ? 'This field is required' : null,
-        enabledBorder: _textFieldBorder(),
-        focusedBorder: _textFieldBorder(color: Colors.lightBlue[200]!),
-        prefixIcon: Icon(Icons.search, color: Colors.grey[600]),
-        suffixIcon: _textController.text.isEmpty
-            ? null
-            : IconButton(
-          icon: Icon(Icons.clear, color: Colors.grey[600]),
-          onPressed: () => _textController.clear(),
-        ),
-      ),
-      onChanged: (value) => setState(() {}),
     );
   }
 
