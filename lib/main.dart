@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:will_widget_playground/case/button_case_pages.dart';
 import 'package:will_widget_playground/case/container_with_bg_case_pages.dart';
+import 'package:will_widget_playground/case/slider_pages.dart';
 import 'package:will_widget_playground/case/text_field_pages.dart';
 
 import 'case/text_pages.dart';
@@ -59,6 +60,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
       title: "Text合集",
       description: "WhyNotText",
       pageBuilder: (context) => TextPages(),
+    ),
+    DemoItem(
+      title: "滑块合集",
+      description: "WhyNotSlider",
+      pageBuilder: (context) => SliderExamplePage(),
     ),
     // 后续添加更多示例...
   ];
