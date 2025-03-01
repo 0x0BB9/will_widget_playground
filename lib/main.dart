@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:will_widget_playground/case/button_case_pages.dart';
 import 'package:will_widget_playground/case/container_with_bg_case_pages.dart';
 import 'package:will_widget_playground/case/text_field_pages.dart';
 
+import 'case/text_pages.dart';
+
 void main() {
+  //使用 DebugPaintSizeEnabled 显示组件边界：
+  debugPaintSizeEnabled = true;
   runApp(const MyApp());
 }
 
@@ -16,21 +21,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
@@ -64,6 +54,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
       title: "输入框合集",
       description: "包含各种样式和交互",
       pageBuilder: (context) => TextFieldPages(),
+    ),
+    DemoItem(
+      title: "Text合集",
+      description: "WhyNotText",
+      pageBuilder: (context) => TextPages(),
     ),
     // 后续添加更多示例...
   ];
