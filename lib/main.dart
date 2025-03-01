@@ -8,7 +8,7 @@ import 'case/text_pages.dart';
 
 void main() {
   //使用 DebugPaintSizeEnabled 显示组件边界：
-  debugPaintSizeEnabled = true;
+  debugPaintSizeEnabled = false;
   runApp(const MyApp());
 }
 
