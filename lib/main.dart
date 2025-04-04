@@ -5,6 +5,7 @@ import 'package:will_widget_playground/case/container_with_bg_case_pages.dart';
 import 'package:will_widget_playground/case/slider_pages.dart';
 import 'package:will_widget_playground/case/stepper_case_pages.dart';
 import 'package:will_widget_playground/case/text_field_pages.dart';
+import 'package:will_widget_playground/splash/splash_widget.dart';
 
 import 'case/text_pages.dart';
 
@@ -25,9 +26,28 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        pageTransitionsTheme: PageTransitionsTheme(
+          builders: {
+            TargetPlatform.android: NoAnimPageTransitionsBuilder(),
+            TargetPlatform.iOS: NoAnimPageTransitionsBuilder(),
+          },
+        ),
       ),
-      home: DemoHomePage(),
+      home: SplashWidget(),
     );
+  }
+}
+
+class NoAnimPageTransitionsBuilder extends PageTransitionsBuilder {
+  @override
+  Widget buildTransitions<T>(
+      PageRoute<T> route,
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+      Widget child,
+      ) {
+    return child;
   }
 }
 
