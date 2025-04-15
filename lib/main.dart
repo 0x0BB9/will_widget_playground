@@ -7,6 +7,7 @@ import 'package:will_widget_playground/case/stepper_case_pages.dart';
 import 'package:will_widget_playground/case/text_field_pages.dart';
 import 'package:will_widget_playground/splash/splash_widget.dart';
 
+import 'case/currency_case_pages.dart';
 import 'case/text_pages.dart';
 
 void main() {
@@ -91,6 +92,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
       title: "步骤合集",
       description: "WhyNotStepper",
       pageBuilder: (context) => StepperExamplesPage(),
+    ),
+    DemoItem(
+      title: "货币格式化",
+      description: "WhyNotCurrencyFormat",
+      pageBuilder: (context) => CurrencyExamplesPage(),
     ),
     // 后续添加更多示例...
   ];
