@@ -38,6 +38,17 @@ dependencies:
   currency_text_input_formatter: ^2.3.0
   currency_formatter: ^2.2.3
 
+  # ram
+  system_info2: ^4.0.0
+  device_info_plus: ^11.3.0
+
+  # root
+  flutter_jailbreak_detection:
+    git:
+      url: https://github.com/pdurasie-ecovery/flutter_jailbreak_detection.git
+      ref: add-namespace
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

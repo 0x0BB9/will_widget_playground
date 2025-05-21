@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:will_widget_playground/case/button_case_pages.dart';
 import 'package:will_widget_playground/case/container_with_bg_case_pages.dart';
+import 'package:will_widget_playground/case/device_info_page.dart';
 import 'package:will_widget_playground/case/slider_pages.dart';
 import 'package:will_widget_playground/case/stepper_case_pages.dart';
 import 'package:will_widget_playground/case/text_field_pages.dart';
@@ -42,12 +43,12 @@ class MyApp extends StatelessWidget {
 class NoAnimPageTransitionsBuilder extends PageTransitionsBuilder {
   @override
   Widget buildTransitions<T>(
-      PageRoute<T> route,
-      BuildContext context,
-      Animation<double> animation,
-      Animation<double> secondaryAnimation,
-      Widget child,
-      ) {
+    PageRoute<T> route,
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
     return child;
   }
 }
@@ -97,6 +98,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
       title: "货币格式化",
       description: "WhyNotCurrencyFormat",
       pageBuilder: (context) => CurrencyExamplesPage(),
+    ),
+    DemoItem(
+      title: "设备指纹",
+      description: " Allow user to get device fingerprint",
+      pageBuilder: (context) => DeviceInfoPage(),
     ),
     // 后续添加更多示例...
   ];
