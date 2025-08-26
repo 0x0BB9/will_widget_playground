@@ -9,6 +9,7 @@ import 'package:will_widget_playground/case/text_field_pages.dart';
 import 'package:will_widget_playground/splash/splash_widget.dart';
 
 import 'case/currency_case_pages.dart';
+import 'case/image_case_pages.dart';
 import 'case/text_pages.dart';
 
 void main() {
@@ -73,6 +74,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
       title: "复杂的背景",
       description: "多种复杂背景效果展示",
       pageBuilder: (context) => ContainerWithBgCasePages(),
+    ),
+    DemoItem(
+      title: "图片加载",
+      description: "图片增加蒙版效果",
+      pageBuilder: (context) => ImageExamplesPage(),
     ),
     DemoItem(
       title: "输入框合集",
