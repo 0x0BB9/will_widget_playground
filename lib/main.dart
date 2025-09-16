@@ -11,6 +11,7 @@ import 'package:will_widget_playground/splash/splash_widget.dart';
 import 'case/currency_case_pages.dart';
 import 'case/image_case_pages.dart';
 import 'case/text_pages.dart';
+import 'case/webview_scroll_case_pages.dart';
 
 void main() {
   //使用 DebugPaintSizeEnabled 显示组件边界：
@@ -71,6 +72,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
       pageBuilder: (context) => ButtonExamplesPage(),
     ),
     DemoItem(
+      title: "WebView 滑动冲突",
+      description: "实验 ScrollView 中嵌套 WebView 的滑动冲突问题",
+      pageBuilder: (context) => WebViewScrollCasePage(),
+    ),
+    DemoItem(
       title: "复杂的背景",
       description: "多种复杂背景效果展示",
       pageBuilder: (context) => ContainerWithBgCasePages(),
@@ -110,6 +116,7 @@ class _DemoHomePageState extends State<DemoHomePage> {
       description: " Allow user to get device fingerprint",
       pageBuilder: (context) => DeviceInfoPage(),
     ),
+    
     // 后续添加更多示例...
   ];
 
