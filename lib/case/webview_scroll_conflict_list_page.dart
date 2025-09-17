@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'webview_scroll_conflict_cases.dart';
+import 'sliver_webview_input_solution.dart';
+import 'third_party_form_sliver.dart';
+import 'advanced_form_features_page.dart';
+import 'scroll_controller_demo_page.dart';
 
 /// WebView 滑动冲突实验列表页面
 class WebViewScrollConflictListPage extends StatelessWidget {
@@ -123,6 +127,42 @@ class WebViewScrollConflictListPage extends StatelessWidget {
             icon: Icons.layers,
             iconColor: Colors.indigo,
             onTap: () => _navigateToCase(context, const SliverNestedCasePage()),
+          ),
+          
+          _buildCaseCard(
+            context,
+            title: 'Sliver 输入框解决方案',
+            description: 'Sliver 中 WebView 输入框被键盘遮挡的完整解决方案',
+            icon: Icons.input,
+            iconColor: Colors.teal,
+            onTap: () => _navigateToCase(context, const SliverWebViewInputSolutionPage()),
+          ),
+          
+          _buildCaseCard(
+            context,
+            title: '第三方表单专用方案',
+            description: '专门针对第三方表单动态加载内容的增强型 Sliver 解决方案',
+            icon: Icons.web,
+            iconColor: Colors.purple,
+            onTap: () => _navigateToCase(context, const ThirdPartyFormSliverPage()),
+          ),
+          
+          _buildCaseCard(
+            context,
+            title: '高级表单功能示例',
+            description: '包含输入框脱敏和下拉选择后自动滚动功能的完整表单示例',
+            icon: Icons.assignment,
+            iconColor: Colors.green,
+            onTap: () => _navigateToCase(context, const AdvancedFormFeaturesPage()),
+          ),
+          
+          _buildCaseCard(
+            context,
+            title: 'ScrollController 扩展方法',
+            description: '演示 ScrollController 的各种扩展方法，包括固定高度滚动等功能',
+            icon: Icons.control_camera,
+            iconColor: Colors.indigo,
+            onTap: () => _navigateToCase(context, const ScrollControllerDemoPage()),
           ),
         ],
       ),

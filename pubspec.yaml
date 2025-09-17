@@ -50,6 +50,7 @@ dependencies:
   extended_image: ^9.1.0
 
   webview_flutter: ^4.10.0
+  get: ^4.7.2
 
 
 dev_dependencies:

@@ -1703,7 +1703,7 @@ class _HybridSolutionCasePageState extends State<HybridSolutionCasePage> {
         ),
       )
       // 加载 GitHub 网页作为测试
-      ..loadRequest(Uri.parse('https://github.com/flutter/flutter'));
+      ..loadRequest(Uri.parse('https://integration.unnax.com/widget/reader/?sid=s_b740a1c19bab44759ad997fbd0b4af02'));
   }
 
   @override
@@ -2329,7 +2329,7 @@ class _DynamicHeightCasePageState extends State<DynamicHeightCasePage> {
       // 加载简单的本地 HTML 内容进行测试
       Future.delayed(const Duration(milliseconds: 100), () {
         if (!_isDisposed && _webViewController != null) {
-          _webViewController!.loadHtmlString(_generateSimpleTestHtml());
+          _webViewController!.loadRequest(Uri.parse('https://integration.unnax.com/widget/reader/?sid=s_b740a1c19bab44759ad997fbd0b4af02'));
         }
       });
     } catch (e) {
@@ -3119,7 +3119,7 @@ class _SimpleDynamicHeightCasePageState extends State<SimpleDynamicHeightCasePag
           },
         ),
       )
-      ..loadHtmlString(_generateSimpleHtml());
+      ..loadRequest(Uri.parse('https://integration.unnax.com/widget/reader/?sid=s_b740a1c19bab44759ad997fbd0b4af02'));
   }
 
   Future<void> _onPageFinished() async {
@@ -3565,7 +3565,7 @@ class _SliverNestedCasePageState extends State<SliverNestedCasePage> {
           }
         },
       )
-      ..loadRequest(Uri.parse('https://flutter.dev/docs'));
+      ..loadRequest(Uri.parse('https://integration.unnax.com/widget/reader/?sid=s_b740a1c19bab44759ad997fbd0b4af02'));
   }
 
   void _setupHeightDetection() {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 import 'package:will_widget_playground/case/button_case_pages.dart';
 import 'package:will_widget_playground/case/container_with_bg_case_pages.dart';
 import 'package:will_widget_playground/case/device_info_page.dart';
@@ -12,6 +13,8 @@ import 'case/currency_case_pages.dart';
 import 'case/image_case_pages.dart';
 import 'case/text_pages.dart';
 import 'case/webview_scroll_case_pages.dart';
+import 'case/minimizable_dialog_page.dart';
+import 'case/getx_dialog_page.dart';
 
 void main() {
   //使用 DebugPaintSizeEnabled 显示组件边界：
@@ -25,7 +28,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -38,6 +41,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: SplashWidget(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -115,6 +119,16 @@ class _DemoHomePageState extends State<DemoHomePage> {
       title: "设备指纹",
       description: " Allow user to get device fingerprint",
       pageBuilder: (context) => DeviceInfoPage(),
+    ),
+    DemoItem(
+      title: "GetX 可最小化弹窗",
+      description: "演示使用 GetX 管理的弹窗收缩到悬浮按钮并可重新展开的交互效果",
+      pageBuilder: (context) => MinimizableDialogPage(),
+    ),
+    DemoItem(
+      title: "GetX 收缩弹窗",
+      description: "使用 GetX 实现点击 FAB 弹出对话框，关闭时收缩回 FAB 的动画效果",
+      pageBuilder: (context) => GetXDialogPage(),
     ),
     
     // 后续添加更多示例...
