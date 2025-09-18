@@ -12,6 +12,7 @@ import 'case/currency_case_pages.dart';
 import 'case/image_case_pages.dart';
 import 'case/text_pages.dart';
 import 'case/webview_scroll_case_pages.dart';
+import 'case/form_case_pages.dart';
 
 void main() {
   //使用 DebugPaintSizeEnabled 显示组件边界：
@@ -72,6 +73,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
       pageBuilder: (context) => ButtonExamplesPage(),
     ),
     DemoItem(
+      title: "表单演示",
+      description: "包含各种表单组件、验证、布局等实用案例",
+      pageBuilder: (context) => FormCasePage(),
+    ),
+    DemoItem(
       title: "WebView 滑动冲突",
       description: "实验 ScrollView 中嵌套 WebView 的滑动冲突问题",
       pageBuilder: (context) => WebViewScrollCasePage(),
@@ -116,6 +122,7 @@ class _DemoHomePageState extends State<DemoHomePage> {
       description: " Allow user to get device fingerprint",
       pageBuilder: (context) => DeviceInfoPage(),
     ),
+
     
     // 后续添加更多示例...
   ];
