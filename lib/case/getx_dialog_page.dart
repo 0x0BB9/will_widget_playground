@@ -60,6 +60,12 @@ class GetXDialogController extends GetxController with GetSingleTickerProviderSt
   void showDialog() {
     print('🎯 GetX Dialog: showDialog called');
     
+    // 安全检查：确保页面状态正常
+    if (!_canShowDialog()) {
+      print('❌ 页面状态不允许显示弹窗');
+      return;
+    }
+    
     // Reset all states and animation
     isDialogVisible.value = true;
     isClosing.value = false; // Reset closing state
@@ -70,6 +76,31 @@ class GetXDialogController extends GetxController with GetSingleTickerProviderSt
       barrierDismissible: true,
       barrierColor: Colors.black.withOpacity(0.5),
     );
+  }
+  
+  /// 检查是否可以显示弹窗
+  bool _canShowDialog() {
+    // 1. 检查弹窗是否已打开
+    if (Get.isDialogOpen == true) {
+      print('❌ 弹窗已打开');
+      return false;
+    }
+    
+    // 2. 检查上下文是否有效
+    if (Get.context == null || !Get.context!.mounted) {
+      print('❌ 页面上下文无效');
+      return false;
+    }
+    
+    // 3. 检查当前路由
+    final currentRoute = Get.currentRoute;
+    if (currentRoute.isEmpty || !currentRoute.contains('GetXDialogPage')) {
+      print('❌ 不在目标页面：$currentRoute');
+      return false;
+    }
+    
+    print('✅ 可以显示弹窗');
+    return true;
   }
 
   void closeDialogWithAnimation() async {

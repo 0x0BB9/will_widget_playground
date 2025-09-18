@@ -15,6 +15,7 @@ import 'case/text_pages.dart';
 import 'case/webview_scroll_case_pages.dart';
 import 'case/minimizable_dialog_page.dart';
 import 'case/getx_dialog_page.dart';
+import 'case/long_form_keyboard_scroll_page.dart';
 
 void main() {
   //使用 DebugPaintSizeEnabled 显示组件边界：
@@ -76,6 +77,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
       pageBuilder: (context) => ButtonExamplesPage(),
     ),
     DemoItem(
+      title: "智能键盘滚动表单",
+      description: "长表单页面，点击输入框时智能滚动，确保当前和下一个输入框都可见",
+      pageBuilder: (context) => LongFormKeyboardScrollPage(),
+    ),
+    DemoItem(
       title: "WebView 滑动冲突",
       description: "实验 ScrollView 中嵌套 WebView 的滑动冲突问题",
       pageBuilder: (context) => WebViewScrollCasePage(),
@@ -130,6 +136,7 @@ class _DemoHomePageState extends State<DemoHomePage> {
       description: "使用 GetX 实现点击 FAB 弹出对话框，关闭时收缩回 FAB 的动画效果",
       pageBuilder: (context) => GetXDialogPage(),
     ),
+    
     
     // 后续添加更多示例...
   ];
