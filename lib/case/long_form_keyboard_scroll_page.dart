@@ -151,9 +151,19 @@ class _LongFormKeyboardScrollPageState extends State<LongFormKeyboardScrollPage>
       return;
     }
     
-    // 🔧 修复：正确计算滚动距离
-    // 目标：让当前输入框位于可见区域底部向上两个输入框高度的位置
-    final targetScreenY = availableHeight - (inputFieldHeight * 2);
+    // 🔧 优化：智能计算目标位置
+    // 目标：让当前输入框和下一个输入框都在键盘上方可见，同时最大化利用可见空间
+    double targetScreenY;
+    
+    if (currentIndex >= _formFields.length - 1) {
+      // 最后一个输入框：留出一个输入框高度的缓冲空间
+      targetScreenY = availableHeight - inputFieldHeight * 1.5;
+    } else {
+      // 非最后一个输入框：确保当前和下一个输入框都可见
+      // 留出两个输入框高度的空间，但不要过于保守
+      final bufferSpace = inputFieldHeight * 1.8; // 稍微减少缓冲空间
+      targetScreenY = availableHeight - bufferSpace;
+    }
     
     // 计算需要的滚动距离
     final requiredScrollDistance = currentFieldPosition.dy - targetScreenY;
@@ -163,7 +173,7 @@ class _LongFormKeyboardScrollPageState extends State<LongFormKeyboardScrollPage>
     final maxScrollExtent = _scrollController.position.maxScrollExtent;
     final clampedOffset = newScrollOffset.clamp(0.0, maxScrollExtent);
     
-    print('🎯 滚动计算: 当前输入框Y=${currentFieldPosition.dy.toInt()}, 目标Y=$targetScreenY, 需要滚动=$requiredScrollDistance, 最终滚动到=${clampedOffset.toInt()}');
+    print('🎯 滚动计算: 当前输入框Y=${currentFieldPosition.dy.toInt()}, 目标Y=${targetScreenY.toInt()}, 需要滚动=${requiredScrollDistance.toInt()}, 最终滚动到=${clampedOffset.toInt()}');
     
     // 平滑滚动到目标位置
     await _scrollController.animateTo(
@@ -176,25 +186,46 @@ class _LongFormKeyboardScrollPageState extends State<LongFormKeyboardScrollPage>
   /// 判断是否需要滚动
   /// 基于当前输入框和下一个输入框的可见性进行智能判断
   bool _shouldScroll(int currentIndex, double currentFieldY, double availableHeight, double inputFieldHeight) {
-    // 最后一个输入框：检查是否会被键盘遵挡
+    final screenHeight = MediaQuery.of(context).size.height;
+    
+    // 🔧 强制滚动阈值：当输入框Y位置超过屏幕高度40%时强制滚动
+    // 这可以防止底部输入框在初始焦点时被键盘遮挡
+    if (currentFieldY > screenHeight * 0.4) {
+      print('🎯 输入框位置超过40%阈值，强制滚动');
+      return true;
+    }
+    
+    // 检查当前输入框是否被键盘遮挡
+    final currentFieldBottomY = currentFieldY + inputFieldHeight;
+    if (currentFieldBottomY > availableHeight) {
+      print('🎯 当前输入框被键盘遮挡，需要滚动');
+      return true;
+    }
+    
+    // 如果是最后一个输入框，只要当前框可见就不需要滚动
     if (currentIndex >= _formFields.length - 1) {
-      final currentFieldBottomY = currentFieldY + inputFieldHeight;
-      return currentFieldBottomY > availableHeight;
+      return false;
     }
     
     // 检查下一个输入框是否存在且可见
     final nextFieldKey = _fieldKeys[currentIndex + 1];
     if (nextFieldKey.currentContext == null) {
-      // 下一个输入框未渲染，但如果当前输入框在屏幕下半部分，则需要滚动
-      return currentFieldY > MediaQuery.of(context).size.height * 0.6;
+      // 下一个输入框未渲染，保持当前判断结果
+      return false;
     }
     
     final RenderBox nextFieldBox = nextFieldKey.currentContext!.findRenderObject() as RenderBox;
     final nextFieldPosition = nextFieldBox.localToGlobal(Offset.zero);
     final nextFieldBottomY = nextFieldPosition.dy + inputFieldHeight;
     
-    // 只有当下一个输入框不能完全显示时才滚动
-    return nextFieldBottomY > availableHeight;
+    // 检查下一个输入框是否完全可见
+    if (nextFieldBottomY > availableHeight) {
+      print('🎯 下一个输入框不完全可见，需要滚动');
+      return true;
+    }
+    
+    print('✅ 当前和下一个输入框都可见，无需滚动');
+    return false;
   }
 
   @override

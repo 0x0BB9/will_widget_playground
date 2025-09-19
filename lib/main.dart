@@ -11,11 +11,12 @@ import 'package:will_widget_playground/splash/splash_widget.dart';
 
 import 'case/currency_case_pages.dart';
 import 'case/image_case_pages.dart';
+import 'case/long_form_keyboard_scroll_page.dart';
 import 'case/text_pages.dart';
 import 'case/webview_scroll_case_pages.dart';
 import 'case/minimizable_dialog_page.dart';
 import 'case/getx_dialog_page.dart';
-import 'case/long_form_keyboard_scroll_page.dart';
+import 'case/webview_h5_keyboard_solution.dart';
 
 void main() {
   //使用 DebugPaintSizeEnabled 显示组件边界：
@@ -80,6 +81,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
       title: "智能键盘滚动表单",
       description: "长表单页面，点击输入框时智能滚动，确保当前和下一个输入框都可见",
       pageBuilder: (context) => LongFormKeyboardScrollPage(),
+    ),
+    DemoItem(
+      title: "WebView H5 键盘解决方案",
+      description: "解决第三方H5页面输入框被键盘遮挡的问题，支持智能滚动和多种测试场景",
+      pageBuilder: (context) => WebViewH5KeyboardSolutionPage(),
     ),
     DemoItem(
       title: "WebView 滑动冲突",
