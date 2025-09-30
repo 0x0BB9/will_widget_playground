@@ -50,6 +50,9 @@ dependencies:
   extended_image: ^9.1.0
 
   webview_flutter: ^4.10.0
+  image_picker: ^0.8.4
+  flutter_image_compress: ^1.0.0
+  camera: ^0.10.0
 
 
 dev_dependencies:

@@ -3,6 +3,7 @@ import 'package:flutter/rendering.dart';
 import 'package:will_widget_playground/case/button_case_pages.dart';
 import 'package:will_widget_playground/case/container_with_bg_case_pages.dart';
 import 'package:will_widget_playground/case/device_info_page.dart';
+import 'package:will_widget_playground/case/id_document_image_case.dart';
 import 'package:will_widget_playground/case/slider_pages.dart';
 import 'package:will_widget_playground/case/stepper_case_pages.dart';
 import 'package:will_widget_playground/case/text_field_pages.dart';
@@ -73,6 +74,11 @@ class _DemoHomePageState extends State<DemoHomePage> {
       pageBuilder: (context) => ButtonExamplesPage(),
     ),
     DemoItem(
+      title: "证件图片上传",
+      description: "多种证件类型图片上传与管理",
+      pageBuilder: (context) => IdDocumentImageCasePage(),
+    ),
+    DemoItem(
       title: "表单演示",
       description: "包含各种表单组件、验证、布局等实用案例",
       pageBuilder: (context) => FormCasePage(),
@@ -122,6 +128,7 @@ class _DemoHomePageState extends State<DemoHomePage> {
       description: " Allow user to get device fingerprint",
       pageBuilder: (context) => DeviceInfoPage(),
     ),
+
 
     
     // 后续添加更多示例...
