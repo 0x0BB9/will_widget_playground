@@ -51,9 +51,14 @@ dependencies:
 
   webview_flutter: ^4.10.0
   image_picker: ^0.8.4
-  flutter_image_compress: ^1.0.0
+  flutter_image_compress: ^2.4.0
   camera: ^0.10.0
+  auto_scroll_to_error: ^1.0.1
+  ensure_visible_when_focused: ^1.2.0
 
+dependency_overrides:
+  camera_android_camerax: 0.6.17
+  camera_android: 0.10.10+1
 
 dev_dependencies:
   flutter_test:

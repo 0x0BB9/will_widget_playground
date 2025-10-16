@@ -1,3 +1,5 @@
+import 'package:auto_scroll_to_error/auto_scroll_to_error.dart';
+import 'package:ensure_visible_when_focused/ensure_visible_when_focused.dart';
 import 'package:flutter/material.dart';
 
 /// 基础表单案例页面
@@ -13,11 +15,11 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
   final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _phoneController = TextEditingController();
-  
+
   String _selectedGender = '男';
   bool _agreeTerms = false;
   double _ageSlider = 25;
-  
+
   @override
   void dispose() {
     _nameController.dispose();
@@ -78,9 +80,9 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
                   ],
                 ),
               ),
-              
+
               const SizedBox(height: 24),
-              
+
               // 基础输入框
               _buildSectionTitle('基础信息'),
               TextFormField(
@@ -98,9 +100,9 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
                   return null;
                 },
               ),
-              
+
               const SizedBox(height: 16),
-              
+
               TextFormField(
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
@@ -120,9 +122,9 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
                   return null;
                 },
               ),
-              
+
               const SizedBox(height: 16),
-              
+
               TextFormField(
                 controller: _phoneController,
                 keyboardType: TextInputType.phone,
@@ -142,14 +144,15 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
                   return null;
                 },
               ),
-              
+
               const SizedBox(height: 24),
-              
+
               // 选择组件
               _buildSectionTitle('选择项'),
               Container(
                 width: double.infinity,
-                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 decoration: BoxDecoration(
                   border: Border.all(color: Colors.grey[400]!),
                   borderRadius: BorderRadius.circular(4),
@@ -173,9 +176,9 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 24),
-              
+
               // 滑块
               _buildSectionTitle('年龄选择'),
               Text('当前年龄: ${_ageSlider.round()}岁'),
@@ -191,9 +194,9 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
                   });
                 },
               ),
-              
+
               const SizedBox(height: 24),
-              
+
               // 复选框
               _buildSectionTitle('协议确认'),
               CheckboxListTile(
@@ -206,9 +209,9 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
                 },
                 controlAffinity: ListTileControlAffinity.leading,
               ),
-              
+
               const SizedBox(height: 32),
-              
+
               // 提交按钮
               SizedBox(
                 width: double.infinity,
@@ -225,9 +228,9 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
                   ),
                 ),
               ),
-              
+
               const SizedBox(height: 16),
-              
+
               // 重置按钮
               SizedBox(
                 width: double.infinity,
@@ -246,7 +249,7 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
       ),
     );
   }
-  
+
   Widget _buildSectionTitle(String title) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
@@ -260,7 +263,7 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
       ),
     );
   }
-  
+
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       // 显示提交结果
@@ -290,7 +293,7 @@ class _BasicFormCasePageState extends State<BasicFormCasePage> {
       );
     }
   }
-  
+
   void _resetForm() {
     setState(() {
       _nameController.clear();
@@ -317,10 +320,10 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
   final _usernameController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
-  
+
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
-  
+
   @override
   void dispose() {
     _usernameController.dispose();
@@ -381,9 +384,9 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
                   ],
                 ),
               ),
-              
+
               const SizedBox(height: 24),
-              
+
               // 用户名验证
               TextFormField(
                 controller: _usernameController,
@@ -396,9 +399,9 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
                 validator: _validateUsername,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
-              
+
               const SizedBox(height: 16),
-              
+
               // 密码验证
               TextFormField(
                 controller: _passwordController,
@@ -408,7 +411,9 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
                   hintText: '请输入密码 (至少8位，包含字母和数字)',
                   prefixIcon: const Icon(Icons.lock),
                   suffixIcon: IconButton(
-                    icon: Icon(_obscurePassword ? Icons.visibility : Icons.visibility_off),
+                    icon: Icon(_obscurePassword
+                        ? Icons.visibility
+                        : Icons.visibility_off),
                     onPressed: () {
                       setState(() {
                         _obscurePassword = !_obscurePassword;
@@ -426,14 +431,14 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
                   }
                 },
               ),
-              
+
               const SizedBox(height: 8),
-              
+
               // 密码强度指示器
               _buildPasswordStrengthIndicator(),
-              
+
               const SizedBox(height: 16),
-              
+
               // 确认密码验证
               TextFormField(
                 controller: _confirmPasswordController,
@@ -443,7 +448,9 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
                   hintText: '请再次输入密码',
                   prefixIcon: const Icon(Icons.lock_outline),
                   suffixIcon: IconButton(
-                    icon: Icon(_obscureConfirmPassword ? Icons.visibility : Icons.visibility_off),
+                    icon: Icon(_obscureConfirmPassword
+                        ? Icons.visibility
+                        : Icons.visibility_off),
                     onPressed: () {
                       setState(() {
                         _obscureConfirmPassword = !_obscureConfirmPassword;
@@ -455,9 +462,9 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
                 validator: _validateConfirmPassword,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
               ),
-              
+
               const SizedBox(height: 32),
-              
+
               // 提交按钮
               SizedBox(
                 width: double.infinity,
@@ -480,7 +487,7 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
       ),
     );
   }
-  
+
   String? _validateUsername(String? value) {
     if (value == null || value.isEmpty) {
       return '请输入用户名';
@@ -496,7 +503,7 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
     }
     return null;
   }
-  
+
   String? _validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return '请输入密码';
@@ -509,7 +516,7 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
     }
     return null;
   }
-  
+
   String? _validateConfirmPassword(String? value) {
     if (value == null || value.isEmpty) {
       return '请确认密码';
@@ -519,11 +526,11 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
     }
     return null;
   }
-  
+
   Widget _buildPasswordStrengthIndicator() {
     String password = _passwordController.text;
     int strength = _calculatePasswordStrength(password);
-    
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -536,24 +543,34 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
                 value: strength / 4,
                 backgroundColor: Colors.grey[300],
                 valueColor: AlwaysStoppedAnimation<Color>(
-                  strength <= 1 ? Colors.red :
-                  strength <= 2 ? Colors.orange :
-                  strength <= 3 ? Colors.yellow :
-                  Colors.green,
+                  strength <= 1
+                      ? Colors.red
+                      : strength <= 2
+                          ? Colors.orange
+                          : strength <= 3
+                              ? Colors.yellow
+                              : Colors.green,
                 ),
               ),
             ),
             const SizedBox(width: 8),
             Text(
-              strength <= 1 ? '弱' :
-              strength <= 2 ? '中' :
-              strength <= 3 ? '强' : '很强',
+              strength <= 1
+                  ? '弱'
+                  : strength <= 2
+                      ? '中'
+                      : strength <= 3
+                          ? '强'
+                          : '很强',
               style: TextStyle(
                 fontSize: 12,
-                color: strength <= 1 ? Colors.red :
-                       strength <= 2 ? Colors.orange :
-                       strength <= 3 ? Colors.yellow :
-                       Colors.green,
+                color: strength <= 1
+                    ? Colors.red
+                    : strength <= 2
+                        ? Colors.orange
+                        : strength <= 3
+                            ? Colors.yellow
+                            : Colors.green,
               ),
             ),
           ],
@@ -561,7 +578,7 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
       ],
     );
   }
-  
+
   int _calculatePasswordStrength(String password) {
     int strength = 0;
     if (password.length >= 8) strength++;
@@ -570,7 +587,7 @@ class _FormValidationCasePageState extends State<FormValidationCasePage> {
     if (RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(password)) strength++;
     return strength;
   }
-  
+
   void _submitForm() {
     if (_formKey.currentState!.validate()) {
       showDialog(
@@ -597,8 +614,10 @@ class ComplexFormCasePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('复杂表单布局'), backgroundColor: Colors.orange[100]),
-      body: const Center(child: Text('复杂表单布局演示页面\n(待完善)', textAlign: TextAlign.center)),
+      appBar: AppBar(
+          title: const Text('复杂表单布局'), backgroundColor: Colors.orange[100]),
+      body: const Center(
+          child: Text('复杂表单布局演示页面\n(待完善)', textAlign: TextAlign.center)),
     );
   }
 }
@@ -609,8 +628,10 @@ class FormStateCasePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('表单状态管理'), backgroundColor: Colors.purple[100]),
-      body: const Center(child: Text('表单状态管理演示页面\n(待完善)', textAlign: TextAlign.center)),
+      appBar: AppBar(
+          title: const Text('表单状态管理'), backgroundColor: Colors.purple[100]),
+      body: const Center(
+          child: Text('表单状态管理演示页面\n(待完善)', textAlign: TextAlign.center)),
     );
   }
 }
@@ -621,8 +642,10 @@ class CustomFormCasePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('自定义表单组件'), backgroundColor: Colors.teal[100]),
-      body: const Center(child: Text('自定义表单组件演示页面\n(待完善)', textAlign: TextAlign.center)),
+      appBar: AppBar(
+          title: const Text('自定义表单组件'), backgroundColor: Colors.teal[100]),
+      body: const Center(
+          child: Text('自定义表单组件演示页面\n(待完善)', textAlign: TextAlign.center)),
     );
   }
 }
@@ -633,8 +656,10 @@ class ResponsiveFormCasePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('响应式表单'), backgroundColor: Colors.indigo[100]),
-      body: const Center(child: Text('响应式表单演示页面\n(待完善)', textAlign: TextAlign.center)),
+      appBar: AppBar(
+          title: const Text('响应式表单'), backgroundColor: Colors.indigo[100]),
+      body: const Center(
+          child: Text('响应式表单演示页面\n(待完善)', textAlign: TextAlign.center)),
     );
   }
 }
@@ -649,17 +674,18 @@ class LongFormCasePage extends StatefulWidget {
 
 class _LongFormCasePageState extends State<LongFormCasePage> {
   final _formKey = GlobalKey<FormState>();
+  final _autoScrollKey = GlobalKey<AutoScrollToErrorState>();
   final _scrollController = ScrollController();
-  
+
   // 创建多个输入框控制器和GlobalKey
   final List<TextEditingController> _controllers = [];
   final List<FocusNode> _focusNodes = [];
   final List<GlobalKey> _fieldKeys = []; // 用于获取输入框的实际位置
-  
+
   @override
   void initState() {
     super.initState();
-    
+
     // 初始化20个输入框的控制器、焦点节点和Key
     for (int i = 0; i < 20; i++) {
       _controllers.add(TextEditingController());
@@ -690,7 +716,7 @@ class _LongFormCasePageState extends State<LongFormCasePage> {
       _scrollToFieldWithDelay(index);
     }
   }
-  
+
   // 延时滚动到指定输入框
   void _scrollToFieldWithDelay(int index) {
     // 延时500ms确保键盘完全弹出
@@ -701,97 +727,98 @@ class _LongFormCasePageState extends State<LongFormCasePage> {
     });
   }
 
-
-
   void _performScrollToField(int index) {
     if (!mounted) return;
-    
+
     try {
       final context = this.context;
       final mediaQuery = MediaQuery.of(context);
       final keyboardHeight = mediaQuery.viewInsets.bottom;
       final screenHeight = mediaQuery.size.height;
       final appBarHeight = kToolbarHeight + mediaQuery.padding.top;
-      
+
       // 调试信息
       debugPrint('=== 滚动调试信息 ===');
       debugPrint('index: $index');
       debugPrint('keyboardHeight: $keyboardHeight');
       debugPrint('screenHeight: $screenHeight');
       debugPrint('appBarHeight: $appBarHeight');
-      
+
       // 如果键盘高度仍然为0，使用预设值
-      final effectiveKeyboardHeight = keyboardHeight > 0 ? keyboardHeight : 300.0; // 预设键盘高度300px
+      final effectiveKeyboardHeight =
+          keyboardHeight > 0 ? keyboardHeight : 300.0; // 预设键盘高度300px
       debugPrint('使用的键盘高度: $effectiveKeyboardHeight');
-      
+
       // 获取输入框的实际位置
-      final RenderBox? renderBox = _fieldKeys[index].currentContext?.findRenderObject() as RenderBox?;
+      final RenderBox? renderBox =
+          _fieldKeys[index].currentContext?.findRenderObject() as RenderBox?;
       if (renderBox == null) {
         debugPrint('无法获取RenderBox，使用降级方案');
         _fallbackScrollToField(index, effectiveKeyboardHeight);
         return;
       }
-      
+
       // 获取输入框相对于屏幕的位置
       final fieldPosition = renderBox.localToGlobal(Offset.zero);
       final fieldHeight = renderBox.size.height;
-      
+
       debugPrint('输入框位置: ${fieldPosition.dy}');
       debugPrint('输入框高度: $fieldHeight');
-      
+
       // 计算可见区域（排除AppBar和键盘）
       final visibleAreaTop = appBarHeight;
       final visibleAreaBottom = screenHeight - effectiveKeyboardHeight;
       final visibleAreaHeight = visibleAreaBottom - visibleAreaTop;
-      
+
       debugPrint('可见区域顶部: $visibleAreaTop');
       debugPrint('可见区域底部: $visibleAreaBottom');
       debugPrint('可见区域高度: $visibleAreaHeight');
-      
+
       // 计算目标位置：输入框中心应该在可见区域的中心
       final targetFieldCenter = visibleAreaTop + (visibleAreaHeight / 2);
       final fieldCenterY = fieldPosition.dy + (fieldHeight / 2);
-      
+
       debugPrint('目标中心位置: $targetFieldCenter');
       debugPrint('输入框中心Y: $fieldCenterY');
-      
+
       // 检查输入框是否已经在理想位置附近（允许50px的误差范围）
       final distanceFromTarget = (fieldCenterY - targetFieldCenter).abs();
       final toleranceRange = 50.0; // 50px的容差范围
-      
+
       debugPrint('与目标位置的距离: $distanceFromTarget');
       debugPrint('容差范围: $toleranceRange');
-      
+
       // 检查输入框是否在可见区域内
-      final isFieldVisible = fieldPosition.dy >= visibleAreaTop && 
-                           (fieldPosition.dy + fieldHeight) <= visibleAreaBottom;
-      
+      final isFieldVisible = fieldPosition.dy >= visibleAreaTop &&
+          (fieldPosition.dy + fieldHeight) <= visibleAreaBottom;
+
       debugPrint('输入框是否在可见区域内: $isFieldVisible');
-      
+
       // 如果输入框已经在理想位置附近且完全可见，则不进行滚动
       if (distanceFromTarget <= toleranceRange && isFieldVisible) {
         debugPrint('输入框已在理想位置，无需滚动');
         debugPrint('========================\n');
         return;
       }
-      
+
       // 计算需要的滚动偏移量
       final scrollOffset = fieldCenterY - targetFieldCenter;
-      
+
       debugPrint('需要滚动偏移: $scrollOffset');
-      
+
       // 获取当前滚动位置
       final currentScrollPosition = _scrollController.offset;
       final targetScrollPosition = currentScrollPosition + scrollOffset;
-      
+
       // 限制滚动位置在合理范围内
       final maxScrollPosition = _scrollController.position.maxScrollExtent;
-      final finalScrollPosition = targetScrollPosition.clamp(0.0, maxScrollPosition);
-      
+      final finalScrollPosition =
+          targetScrollPosition.clamp(0.0, maxScrollPosition);
+
       debugPrint('当前滚动位置: $currentScrollPosition');
       debugPrint('目标滚动位置: $targetScrollPosition');
       debugPrint('最终滚动位置: $finalScrollPosition');
-      
+
       // 执行滚动动画
       debugPrint('执行滚动动画');
       _scrollController.animateTo(
@@ -799,13 +826,14 @@ class _LongFormCasePageState extends State<LongFormCasePage> {
         duration: const Duration(milliseconds: 400),
         curve: Curves.easeOutCubic,
       );
-      
+
       debugPrint('========================\n');
     } catch (e) {
       debugPrint('获取位置失败: $e');
       // 如果获取位置失败，使用降级方案
       final keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
-      final effectiveKeyboardHeight = keyboardHeight > 0 ? keyboardHeight : 300.0;
+      final effectiveKeyboardHeight =
+          keyboardHeight > 0 ? keyboardHeight : 300.0;
       _fallbackScrollToField(index, effectiveKeyboardHeight);
     }
   }
@@ -813,60 +841,64 @@ class _LongFormCasePageState extends State<LongFormCasePage> {
   // 降级方案：使用估算位置
   void _fallbackScrollToField(int index, [double? keyboardHeight]) {
     if (!mounted) return;
-    
+
     final context = this.context;
     final mediaQuery = MediaQuery.of(context);
-    final currentKeyboardHeight = keyboardHeight ?? mediaQuery.viewInsets.bottom;
+    final currentKeyboardHeight =
+        keyboardHeight ?? mediaQuery.viewInsets.bottom;
     final screenHeight = mediaQuery.size.height;
     final appBarHeight = kToolbarHeight + mediaQuery.padding.top;
-    
+
     // 如果键盘高度仍然为0，使用预设值
-    final effectiveKeyboardHeight = currentKeyboardHeight > 0 ? currentKeyboardHeight : 300.0;
-    
+    final effectiveKeyboardHeight =
+        currentKeyboardHeight > 0 ? currentKeyboardHeight : 300.0;
+
     debugPrint('=== 降级方案调试信息 ===');
     debugPrint('使用的键盘高度(降级): $effectiveKeyboardHeight');
-    
+
     // 计算可见区域
     final visibleAreaTop = appBarHeight;
     final visibleAreaBottom = screenHeight - effectiveKeyboardHeight;
     final availableHeight = visibleAreaBottom - visibleAreaTop;
-    
+
     // 估算输入框位置（每个输入框约76px高度）
     final estimatedFieldTop = index * 76.0;
     final estimatedFieldCenter = estimatedFieldTop + 38.0; // 38是输入框高度的一半
-    
+
     // 计算目标中心位置
     final targetCenter = visibleAreaTop + (availableHeight / 2);
-    
+
     // 检查是否需要滚动（使用50px容差）
     final distanceFromTarget = (estimatedFieldCenter - targetCenter).abs();
     final toleranceRange = 50.0;
-    
+
     debugPrint('估算的输入框中心位置(降级): $estimatedFieldCenter');
     debugPrint('目标中心位置(降级): $targetCenter');
     debugPrint('与目标位置的距离(降级): $distanceFromTarget');
-    
+
     // 如果已经在理想位置附近，则不滚动
     if (distanceFromTarget <= toleranceRange) {
       debugPrint('输入框已在理想位置(降级)，无需滚动');
       debugPrint('========================\n');
       return;
     }
-    
+
     // 计算目标滚动位置
-    final targetScrollPosition = estimatedFieldTop - (availableHeight * 0.5) + 38;
-    
+    final targetScrollPosition =
+        estimatedFieldTop - (availableHeight * 0.5) + 38;
+
     // 限制滚动位置在合理范围内
     final maxScrollPosition = _scrollController.position.maxScrollExtent;
-    final finalScrollPosition = targetScrollPosition.clamp(0.0, maxScrollPosition);
-    
+    final finalScrollPosition =
+        targetScrollPosition.clamp(0.0, maxScrollPosition);
+
     debugPrint('可用高度(降级): $availableHeight');
     debugPrint('估算位置(降级): $estimatedFieldTop');
     debugPrint('目标滚动(降级): $targetScrollPosition');
     debugPrint('最终位置(降级): $finalScrollPosition');
     debugPrint('执行滚动动画(降级)');
     debugPrint('========================\n');
-    
+
     // 执行平滑滚动
     _scrollController.animateTo(
       finalScrollPosition,
@@ -997,7 +1029,7 @@ class _LongFormCasePageState extends State<LongFormCasePage> {
       ),
     );
   }
-  
+
   // 为不同的输入框返回不同的图标
   IconData _getIconForIndex(int index) {
     final icons = [
@@ -1060,3 +1092,164 @@ class _LongFormCasePageState extends State<LongFormCasePage> {
     );
   }
 }
+
+class ErrorScrollForm extends StatefulWidget {
+  const ErrorScrollForm({super.key});
+
+  @override
+  State<ErrorScrollForm> createState() => _ErrorScrollFormState();
+}
+
+class _ErrorScrollFormState extends State<ErrorScrollForm> {
+  final _formKey = GlobalKey<FormState>();
+  final _autoScrollKey = GlobalKey<AutoScrollToErrorState>();
+  final _scrollController = ScrollController();
+
+  // Generate a list of field keys for 12 fields
+  final List<GlobalKey<FormFieldState<String>>> _fieldKeys =
+  List.generate(12, (i) => GlobalKey<FormFieldState<String>>());
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Auto Scroll To Error Example')),
+      body: Padding(
+        padding: EdgeInsets.all(16.0),
+        child: AutoScrollToError(
+        key: _autoScrollKey,
+        formKey: _formKey,
+        scrollController: _scrollController,
+        child: SingleChildScrollView(
+          controller: _scrollController,
+          child: Form(
+            key: _formKey,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                for (int i = 0; i < _fieldKeys.length; i++) ...[
+                  AutoScrollFormField<String>(
+                    key: _fieldKeys[i],
+                    validator: (value) => (value == null || value.isEmpty)
+                        ? 'Field ${i + 1} required'
+                        : null,
+                    builder: (field) => TextField(
+                      decoration: InputDecoration(
+                        labelText: 'Field ${i + 1}',
+                        errorText: field.errorText,
+                      ),
+                      onChanged: field.didChange,
+                    ),
+                  ),
+                  const SizedBox(height: 40),
+                ],
+                ElevatedButton(
+                  onPressed: () async {
+                    // Validate the form
+                    final valid = _formKey.currentState?.validate() ?? false;
+                    if (!valid) {
+                      // Scroll to the first error field
+                      await _autoScrollKey.currentState?.scrollToFirstError();
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Form is valid!')),
+                      );
+                    }
+                  },
+                  child: const Text('Submit'),
+                ),
+                const SizedBox(height: 40),
+              ],
+            ),
+          ),
+        ),
+      ),
+      ),
+    );
+
+  }}
+
+class EnsureVisibleWhenFocusedPage extends StatefulWidget {
+  const EnsureVisibleWhenFocusedPage({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  _EnsureVisibleWhenFocusedPageState createState() => _EnsureVisibleWhenFocusedPageState();
+}
+
+class _EnsureVisibleWhenFocusedPageState extends State<EnsureVisibleWhenFocusedPage> {
+  late GlobalKey<FormState> _formKey;
+  late FocusNode _focusNode;
+
+  @override
+  void initState() {
+    _formKey = GlobalKey<FormState>();
+    _focusNode = FocusNode();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _focusNode.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SafeArea(
+      child: Scaffold(
+        body: Form(
+          key: _formKey,
+          child: Padding(
+            padding: const EdgeInsets.all(18),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  EnsureVisibleWhenFocused(
+                    focusNode: _focusNode,
+                    child: TextFormField(
+                      focusNode: _focusNode,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        hintText: '* Form Field',
+                      ),
+                      validator: (value) => 'Required Field',
+                    ),
+                  ),
+                  ...List.generate(
+                    30,
+                        (i) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: 'Form Field ${i + 1}',
+                        ),
+                      ),
+                    ),
+                  ).toList(),
+                ],
+              ),
+            ),
+          ),
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            final _form = _formKey.currentState!;
+            _form.validate();
+            _focusNode.requestFocus();
+          },
+          child: Icon(Icons.check),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+

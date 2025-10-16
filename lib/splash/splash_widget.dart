@@ -14,7 +14,7 @@ class _SplashWidgetState extends State<SplashWidget> {
   void initState() {
     super.initState();
     enterFullScreen();
-    Future.delayed(Duration(seconds: 3), () {
+    Future.delayed(Duration(seconds: 1), () {
       if (!mounted) {
         return;
       }

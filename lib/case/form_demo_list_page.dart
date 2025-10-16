@@ -73,6 +73,24 @@ class FormDemoListPage extends StatelessWidget {
 
           _buildFormCard(
             context,
+            title: 'auto_scroll_to_error',
+            description: 'A Flutter widget that improves form UX by automatically scrolling a scrollable form to the first invalid field when validation fails.',
+            icon: Icons.keyboard_arrow_down,
+            iconColor: Colors.deepPurple,
+            onTap: () => _navigateToCase(context, const ErrorScrollForm()),
+          ),
+
+          _buildFormCard(
+            context,
+            title: 'ensure_visible_when_focused package',
+            description: 'ensure-a-textfield-or-textformfield-is-visible-in-the-viewport-when-has-the-focus',
+            icon: Icons.keyboard_arrow_down,
+            iconColor: Colors.deepPurple,
+            onTap: () => _navigateToCase(context, const EnsureVisibleWhenFocusedPage()),
+          ),
+
+          _buildFormCard(
+            context,
             title: '复杂表单布局',
             description: '展示分组表单、多步骤表单、动态表单等复杂布局',
             icon: Icons.view_module,
@@ -105,15 +123,6 @@ class FormDemoListPage extends StatelessWidget {
             icon: Icons.devices,
             iconColor: Colors.indigo,
             onTap: () => _navigateToCase(context, const ResponsiveFormCasePage()),
-          ),
-          
-          _buildFormCard(
-            context,
-            title: '长表单智能滚动',
-            description: '输入框获取焦点时自动滚动到屏幕可见区域50%居中位置',
-            icon: Icons.keyboard_arrow_down,
-            iconColor: Colors.deepPurple,
-            onTap: () => _navigateToCase(context, const LongFormCasePage()),
           ),
         ],
       ),
