@@ -9,11 +9,13 @@ import 'package:will_widget_playground/case/stepper_case_pages.dart';
 import 'package:will_widget_playground/case/text_field_pages.dart';
 import 'package:will_widget_playground/splash/splash_widget.dart';
 
+import 'case/carousel_review_case.dart';
 import 'case/currency_case_pages.dart';
 import 'case/image_case_pages.dart';
 import 'case/text_pages.dart';
 import 'case/webview_scroll_case_pages.dart';
 import 'case/form_case_pages.dart';
+import 'case/sticky_footer_case.dart';
 
 void main() {
   //使用 DebugPaintSizeEnabled 显示组件边界：
@@ -128,8 +130,18 @@ class _DemoHomePageState extends State<DemoHomePage> {
       description: " Allow user to get device fingerprint",
       pageBuilder: (context) => DeviceInfoPage(),
     ),
-
-
+    
+    DemoItem(
+      title: "好评自动轮播组件",
+      description: "使用carousel_slider实现的好评自动轮播组件，当前项目不放大",
+      pageBuilder: (context) => CarouselReviewDemo(),
+    ),
+    
+    DemoItem(
+      title: "粘性底部提示文字",
+      description: "底部提示文字根据内容高度智能定位：内容不足时固定底部，充足时跟随内容",
+      pageBuilder: (context) => StickyFooterDemo(),
+    ),
     
     // 后续添加更多示例...
   ];

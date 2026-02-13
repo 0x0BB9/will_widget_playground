@@ -55,6 +55,7 @@ dependencies:
   camera: ^0.10.0
   auto_scroll_to_error: ^1.0.1
   ensure_visible_when_focused: ^1.2.0
+  carousel_slider: ^5.0.0
 
 dependency_overrides:
   camera_android_camerax: 0.6.17
