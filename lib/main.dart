@@ -16,6 +16,7 @@ import 'case/text_pages.dart';
 import 'case/webview_scroll_case_pages.dart';
 import 'case/form_case_pages.dart';
 import 'case/sticky_footer_case.dart';
+import 'case/ios_webview_click_issue_demo.dart';
 
 void main() {
   //使用 DebugPaintSizeEnabled 显示组件边界：
@@ -141,6 +142,12 @@ class _DemoHomePageState extends State<DemoHomePage> {
       title: "粘性底部提示文字",
       description: "底部提示文字根据内容高度智能定位：内容不足时固定底部，充足时跟随内容",
       pageBuilder: (context) => StickyFooterDemo(),
+    ),
+    
+    DemoItem(
+      title: "iOS WebView 点击问题测试",
+      description: "复现 iOS 18.2+ 中 WebView 点击失效问题：先触发 Flutter Overlay 后 WebView 点击无响应",
+      pageBuilder: (context) => const IOSWebViewClickIssueDemo(),
     ),
     
     // 后续添加更多示例...
